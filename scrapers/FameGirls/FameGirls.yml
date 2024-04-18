@@ -1,0 +1,26 @@
+name: "FameGirls"
+sceneByURL:
+  - action: scrapeXPath
+    scraper: sceneScraper
+    url:
+      - famegirls.net/videos
+xPathScrapers:
+  sceneScraper:
+    scene:
+      Studio: 
+        Name:
+          fixed: FameGirls
+      Title: //h1[@class='title']
+      Date:
+        selector: //meta[@property='video:release_date']/@content
+        postProcess:
+          - replace:
+              - regex: "T.*$"
+                with:
+      Details: //span[@class='media-info__desc']
+      Tags: 
+        Name: //div[@class="media-info__buttons"]/a
+      Performers:
+        Name: //div[@class='media-box__content']/h3[@class='media-box__title']
+      Image: //img[@class='media-container__join__img']/@src
+# Last Updated April 18, 2024
